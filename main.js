@@ -15,9 +15,10 @@ const TUBE_MATERIAL  = { metalness: 1, roughness: 0.25 };
 // ─── Renderer / scene ────────────────────────────────────────────────────────
 
 const canvas   = document.getElementById('tubes-canvas');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 1);
 
 const scene  = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
@@ -185,10 +186,10 @@ window.addEventListener('resize', () => {
 // ─── Sleep animation (no pointer) ────────────────────────────────────────────
 
 function sleepTarget(elapsed, wWidth, wHeight) {
-  const rx = wWidth  * 0.3;
-  const ry = wHeight * 0.15;
-  target3D.x = rx * Math.cos(elapsed * 1.0);
-  target3D.y = ry * Math.sin(elapsed * 2.0);
+  const rx = wWidth  * 0.55;
+  const ry = wHeight * 0.35;
+  target3D.x = rx * Math.cos(elapsed * 0.6);
+  target3D.y = ry * Math.sin(elapsed * 1.2);
   target3D.z = 0;
 }
 
@@ -221,7 +222,7 @@ function animate() {
   }
 
   for (const tube of tubes) {
-    tube.lerpTo(target3D, elapsed, 0.5, 0.05);
+    tube.lerpTo(target3D, elapsed, isHovering ? 0.5 : 0.06, 0.05);
   }
 
   renderer.render(scene, camera);
