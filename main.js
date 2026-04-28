@@ -1,1 +1,20 @@
-const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');let W,H,nodes=[],mouse={x:-999,y:-999};const COUNT=60,CONNECT=140,MOUSE_RADIUS=160;function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}function Node(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.5;this.vy=(Math.random()-.5)*.5;this.r=Math.random()*2+1}Node.prototype.update=function(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1};function init(){nodes=[];for(let i=0;i<COUNT;i++)nodes.push(new Node())}function draw(){ctx.clearRect(0,0,W,H);for(let i=0;i<nodes.length;i++){nodes[i].update();for(let j=i+1;j<nodes.length;j++){const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<CONNECT){const alpha=(1-dist/CONNECT)*.35;ctx.beginPath();ctx.strokeStyle=`rgba(55,138,221,${alpha})`;ctx.lineWidth=.6;ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke()}}const mdx=nodes[i].x-mouse.x,mdy=nodes[i].y-mouse.y,mdist=Math.sqrt(mdx*mdx+mdy*mdy);if(mdist<MOUSE_RADIUS){const alpha=(1-mdist/MOUSE_RADIUS)*.6;ctx.beginPath();ctx.strokeStyle=`rgba(29,158,117,${alpha})`;ctx.lineWidth=.8;ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke()}ctx.beginPath();ctx.arc(nodes[i].x,nodes[i].y,nodes[i].r,0,Math.PI*2);ctx.fillStyle=mdist<MOUSE_RADIUS?'rgba(29,158,117,0.9)':'rgba(182,212,244,0.7)';ctx.fill()}requestAnimationFrame(draw)}window.addEventListener('resize',()=>{resize();init()});window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});window.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999});resize();init();draw();
+import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
+
+const BRAND_COLORS = ["#378ADD", "#1D9E75", "#85B7EB"];
+const BRAND_LIGHTS = ["#0C447C", "#1D9E75", "#378ADD", "#E6F1FB"];
+
+const app = TubesCursor(document.getElementById('canvas'), {
+  tubes: {
+    colors: BRAND_COLORS,
+    lights: {
+      intensity: 200,
+      colors: BRAND_LIGHTS
+    }
+  }
+});
+
+// Click resets to brand colors (no random cycling)
+document.body.addEventListener('click', () => {
+  app.tubes.setColors(BRAND_COLORS);
+  app.tubes.setLightsColors(BRAND_LIGHTS);
+});
