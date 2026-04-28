@@ -1,4 +1,4 @@
-import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
+import TubesCursor from "tubes.min.js";
 
 const BRAND_COLORS = ["#378ADD", "#1D9E75", "#85B7EB"];
 const BRAND_LIGHTS = ["#0C447C", "#1D9E75", "#378ADD", "#E6F1FB"];
