@@ -6,36 +6,31 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  user-select: none;
-  -webkit-user-select: none;
 }
 
 :root {
-  --navy:  #042C53;
-  --mid:   #378ADD;
+  --navy: #042C53;
+  --mid:  #378ADD;
   --light: #E6F1FB;
-  --teal:  #1D9E75;
+  --teal: #1D9E75;
 }
 
 html,
 body {
   height: 100%;
-  width: 100%;
+  background: #000000;
   overflow: hidden;
   font-family: 'DM Mono', monospace;
   touch-action: none;
 }
 
-/* Tubes canvas — full screen, pointer events off so UI stays interactive */
-#tubes-canvas {
+canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
-  display: block;
-  touch-action: none;
 }
 
 .content {
@@ -48,7 +43,6 @@ body {
   justify-content: center;
   text-align: center;
   padding: 24px;
-  pointer-events: none;
 }
 
 .wordmark {
@@ -99,7 +93,6 @@ body {
   opacity: 0;
   animation: fadeUp 1s ease 2.2s forwards;
   z-index: 1;
-  pointer-events: none;
 }
 
 @keyframes fadeUp {
