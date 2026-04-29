@@ -15,6 +15,14 @@ const app = TubesCursor(canvas, {
   }
 });
 
+// Reveal the canvas only after the first real WebGL frame has been drawn.
+// The canvas starts at opacity:0 (set inline in HTML) to prevent a white flash.
+app.three.onAfterRender = function() {
+  app.three.onAfterRender = function() {}; // run once
+  canvas.style.transition = 'opacity 0.6s ease';
+  canvas.style.opacity = '1';
+};
+
 // Shared reset handler used by both click and tap
 function resetColors() {
   app.tubes.setColors(BRAND_COLORS);
@@ -29,7 +37,6 @@ document.body.addEventListener('click', resetColors);
 document.body.addEventListener('touchmove', (e) => {
   e.preventDefault();
   const touch = e.touches[0];
-  // Dispatch a synthetic pointermove so the underlying cursor tracker picks it up
   const pointerEvent = new PointerEvent('pointermove', {
     clientX: touch.clientX,
     clientY: touch.clientY,
@@ -45,7 +52,6 @@ document.body.addEventListener('touchend', (e) => {
   e.preventDefault();
   resetColors();
 
-  // Fire a pointerleave so the idle animation resumes if the finger lifts
   const touch = e.changedTouches[0];
   const leaveEvent = new PointerEvent('pointerleave', {
     clientX: touch.clientX,
