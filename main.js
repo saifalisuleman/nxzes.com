@@ -6,6 +6,9 @@ const BRAND_LIGHTS = ["#0C447C", "#1D9E75", "#378ADD", "#E6F1FB"];
 const canvas = document.getElementById('canvas');
 
 const app = TubesCursor(canvas, {
+  rendererOptions: {
+    forceWebGL: true,
+  },
   tubes: {
     colors: BRAND_COLORS,
     lights: {
