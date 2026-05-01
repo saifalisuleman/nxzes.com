@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,800&family=JetBrains+Mono:wght@300;400&display=swap');
 
 *,
 *::before,
@@ -11,19 +11,34 @@
 }
 
 :root {
-  --navy: #042C53;
-  --mid:  #378ADD;
-  --light: #E6F1FB;
-  --teal: #1D9E75;
+  --bg:        #0a0f0c;
+  --green:     #2dd47a;
+  --green-dim: #1a8a4e;
+  --green-deep:#0d3d24;
+  --white:     #e8efe9;
+  --muted:     #4a5a52;
 }
 
 html,
 body {
   height: 100%;
-  background: #000000;
+  background: var(--bg);
   overflow: hidden;
-  font-family: 'DM Mono', monospace;
+  font-family: 'Bricolage Grotesque', sans-serif;
   touch-action: none;
+}
+
+/* Subtle grid overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(45, 212, 122, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 212, 122, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 canvas {
@@ -32,13 +47,13 @@ canvas {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-  background: #000000;
+  z-index: 1;
+  background: var(--bg);
 }
 
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -46,31 +61,74 @@ canvas {
   justify-content: center;
   text-align: center;
   padding: 24px;
+  gap: 0;
 }
 
-.wordmark {
-  font-weight: 300;
-  font-size: clamp(42px, 10vw, 88px);
-  letter-spacing: .3em;
-  color: var(--light);
+/* Logo + wordmark row */
+.lockup {
+  display: flex;
+  align-items: center;
+  gap: 0;
   opacity: 0;
   animation: fadeUp 1.2s cubic-bezier(.16, 1, .3, 1) .4s forwards;
 }
 
+.chevron-logo {
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+.wordmark {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: clamp(36px, 8vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.wordmark-nx {
+  font-weight: 800;
+  color: var(--white);
+}
+
+.wordmark-zes {
+  color: var(--green);
+}
+
+.wordmark-sol {
+  font-weight: 300;
+  color: var(--white);
+  opacity: 0.85;
+}
+
+/* Divider */
 .divider {
   width: 0;
   height: 1px;
-  background: var(--light);
-  margin: 18px auto;
+  background: var(--white);
+  margin: 20px auto 18px;
+  opacity: 0.5;
   animation: expand 1s cubic-bezier(.16, 1, .3, 1) 1.3s forwards;
 }
 
-.status {
-  font-size: clamp(11px, 2vw, 13px);
-  letter-spacing: .2em;
-  color: var(--light);
+/* Tagline */
+.tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(10px, 1.5vw, 12px);
+  letter-spacing: 0.3em;
+  color: var(--white);
   opacity: 0;
-  animation: fadeUp 1s ease 1.8s forwards;
+  animation: fadeUp 1s ease 1.6s forwards;
+  margin-bottom: 20px;
+}
+
+/* Status pill */
+.status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(10px, 1.8vw, 12px);
+  letter-spacing: 0.2em;
+  color: var(--white);
 }
 
 .dot {
@@ -78,37 +136,59 @@ canvas {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--green);
   margin-right: 10px;
   vertical-align: middle;
-  animation: pulse 2s ease-in-out 2.2s infinite;
+  animation: pulse 2s ease-in-out 2.4s infinite;
 }
 
+/* Footer */
 .footer {
   position: fixed;
   bottom: 28px;
   left: 0;
   right: 0;
   text-align: center;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  letter-spacing: .15em;
-  color: var(--light);
+  letter-spacing: 0.15em;
+  color: var(--muted);
   opacity: 0;
-  animation: fadeUp 1s ease 2.2s forwards;
-  z-index: 1;
+  animation: fadeUp 1s ease 2.3s forwards;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
+.footer .status {
+  opacity: 1;
+  animation: none;
+  transform: none;
+}
+
+/* Animations */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes expand {
-  from { width: 0; }
-  to   { width: 200px; }
+  from { width: 0; opacity: 0; }
+  to   { width: 200px; opacity: 0.5; }
 }
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50%       { opacity: .25; }
+}
+
+@keyframes pulse-fade {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.75; }
+}
+
+.pulse-chevron {
+  animation: pulse-fade 2.8s ease-in-out infinite;
 }

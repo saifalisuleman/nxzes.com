@@ -1,23 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#000">
+<html lang="en" style="background:#0a0f0c">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NXZES</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230C447C'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-size='12' font-weight='500' fill='%23E6F1FB' letter-spacing='0.5'>NX</text></svg>"/>
+  <title>NXZES Solutions</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230d3d24'/><path d='M6 8 L16 16 L6 24' stroke='%232dd47a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/><path d='M17 8 L26 16 L17 24' stroke='%232dd47a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none' opacity='0.4'/></svg>"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,800&family=JetBrains+Mono:wght@300;400&display=swap"/>
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <canvas id="canvas" style="opacity:0"></canvas>
   <div class="content">
-    <div class="wordmark">NXZES</div>
+    <div class="lockup">
+      <svg class="chevron-logo" width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 16 L34 34 L14 52"
+          stroke="#2dd47a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M36 16 L54 34 L36 52"
+          stroke="#2dd47a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35" class="pulse-chevron"/>
+      </svg>
+      <div class="wordmark">
+        <span class="wordmark-nx">NX<span class="wordmark-zes">ZES</span></span>
+        <span class="wordmark-sol">Solutions</span>
+      </div>
+    </div>
     <div class="divider"></div>
-    <div class="status"><span class="dot"></span>Website under maintenance</div>
+    <div class="tagline">— Building the Next, Today</div>
   </div>
-  <div class="footer">nxzes.com</div>
+  <div class="footer">
+    <div class="status"><span class="dot"></span>Website under maintenance</div>
+    <div>nxzes.com</div>
+  </div>
   <script type="module" src="main.js"></script>
 </body>
 </html>
