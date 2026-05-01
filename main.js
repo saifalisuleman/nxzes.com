@@ -1,7 +1,7 @@
 import TubesCursor from "/tubes.min.js";
 
-const BRAND_COLORS = ["#2dd47a", "#1a8a4e", "#97C459"];
-const BRAND_LIGHTS = ["#0d3d24", "#1a8a4e", "#2dd47a", "#e8efe9"];
+const BRAND_COLORS = ["#378ADD", "#85B7EB", "#0C447C"];
+const BRAND_LIGHTS = ["#042C53", "#0C447C", "#378ADD", "#E6F1FB"];
 
 const canvas = document.getElementById('canvas');
 
