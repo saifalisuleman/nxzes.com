@@ -90,7 +90,7 @@ canvas {
 
 .wordmark-nx {
   font-weight: 800;
-  font-size: clamp(28px, 5vw, 64px);
+  font-size: clamp(28px, 1.5vw, 64px);
   color: var(--white);
   line-height: 1;
 }
@@ -101,7 +101,7 @@ canvas {
 
 .wordmark-sol {
   font-weight: 300;
-  font-size: clamp(28px, 5vw, 64px);
+  font-size: clamp(28px, 1.5vw, 64px);
   color: var(--white);
   opacity: 0.85;
   line-height: 1;
