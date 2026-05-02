@@ -2,8 +2,8 @@ import TubesCursor from "/tubes.min.js";
 
 // Dark green shades — same hue as the logo but deep/muted so the
 // animation feels atmospheric without fighting the bright green chevrons
-const BRAND_COLORS = ["#0d3d24", "#1a2e1c", "#1c2420"];
-const BRAND_LIGHTS = ["#061a10", "#0d2418", "#1a2e1c", "#0a1a10"];
+const BRAND_COLORS = ["#0d3d24", "#1a8a4e", "#0a2918"];
+const BRAND_LIGHTS = ["#061a10", "#0d3d24", "#1a8a4e", "#2dd47a"];
 
 const canvas = document.getElementById('canvas');
 
