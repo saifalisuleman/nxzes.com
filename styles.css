@@ -74,7 +74,7 @@ canvas {
   flex-shrink: 0;
   display: block;
   width: auto;
-  height: clamp(36px, 5vw, 56px);
+  height: clamp(36px, 2vw, 100px);
 }
 
 /* ── DESKTOP: one line — NXZES Solutions side by side ── */
@@ -90,7 +90,7 @@ canvas {
 
 .wordmark-nx {
   font-weight: 800;
-  font-size: clamp(28px, 1.5vw, 64px);
+  font-size: clamp(28px, 2vw, 100px);
   color: var(--white);
   line-height: 1;
 }
@@ -101,7 +101,7 @@ canvas {
 
 .wordmark-sol {
   font-weight: 300;
-  font-size: clamp(28px, 1.5vw, 64px);
+  font-size: clamp(28px, 2vw, 100px);
   color: var(--white);
   opacity: 0.85;
   line-height: 1;
