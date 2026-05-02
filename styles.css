@@ -28,7 +28,6 @@ body {
   touch-action: none;
 }
 
-/* Subtle grid overlay */
 body::before {
   content: '';
   position: fixed;
@@ -64,33 +63,39 @@ canvas {
   gap: 0;
 }
 
-/* Logo + wordmark row */
+/* ── Lockup ── */
 .lockup {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0;
   opacity: 0;
   animation: fadeUp 1.2s cubic-bezier(.16, 1, .3, 1) .4s forwards;
 }
 
+/* SVG sized by JS to match wordmark height. Fallback for before JS runs. */
 .chevron-logo {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
+  display: block;
+  width: auto;
+  height: clamp(36px, 5vw, 56px);
 }
 
+/* ── DESKTOP: one line — NXZES Solutions side by side ── */
 .wordmark {
   display: flex;
+  flex-direction: row;
   align-items: baseline;
   gap: 10px;
-  font-size: clamp(36px, 8vw, 72px);
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
 }
 
 .wordmark-nx {
   font-weight: 800;
+  font-size: clamp(28px, 5vw, 64px);
   color: var(--white);
+  line-height: 1;
 }
 
 .wordmark-zes {
@@ -99,32 +104,28 @@ canvas {
 
 .wordmark-sol {
   font-weight: 300;
+  font-size: clamp(28px, 5vw, 64px);
   color: var(--white);
   opacity: 0.85;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-/* Mobile: stack NXZES and Solutions, scale chevron to full stacked height */
-@media (max-width: 480px) {
-  .lockup {
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .chevron-logo {
-    width: auto;
-    height: auto;
-    align-self: stretch;
-  }
-
+/* ── MOBILE: stack NXZES on top, Solutions below ── */
+@media (max-width: 600px) {
   .wordmark {
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
-    font-size: clamp(36px, 14vw, 56px);
+    gap: 0;
+    white-space: normal;
+  }
+
+  .wordmark-nx {
+    font-size: clamp(32px, 13vw, 52px);
   }
 
   .wordmark-sol {
-    font-size: 0.7em;
+    font-size: clamp(22px, 9vw, 36px);
   }
 }
 
@@ -133,7 +134,7 @@ canvas {
   width: 0;
   height: 1px;
   background: var(--white);
-  margin: 20px auto 18px;
+  margin: 24px auto 20px;
   opacity: 0.5;
   animation: expand 1s cubic-bezier(.16, 1, .3, 1) 1.3s forwards;
 }
@@ -146,10 +147,9 @@ canvas {
   color: var(--white);
   opacity: 0;
   animation: fadeUp 1s ease 1.6s forwards;
-  margin-bottom: 20px;
 }
 
-/* Status pill */
+/* Status */
 .status {
   font-family: 'JetBrains Mono', monospace;
   font-size: clamp(10px, 1.8vw, 12px);
@@ -194,7 +194,6 @@ canvas {
   transform: none;
 }
 
-/* Animations */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }

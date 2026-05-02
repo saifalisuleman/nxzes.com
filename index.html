@@ -14,15 +14,15 @@
   <canvas id="canvas" style="opacity:0"></canvas>
   <div class="content">
     <div class="lockup">
-      <svg class="chevron-logo" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <svg id="chevron-logo" class="chevron-logo" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
         <path d="M14 16 L34 34 L14 52"
           stroke="#2dd47a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         <path d="M36 16 L54 34 L36 52"
           stroke="#2dd47a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35" class="pulse-chevron"/>
       </svg>
-      <div class="wordmark">
-        <span class="wordmark-nx">NX<span class="wordmark-zes">ZES</span></span>
-        <span class="wordmark-sol">Solutions</span>
+      <div class="wordmark" id="wordmark">
+        <div class="wordmark-nx">NX<span class="wordmark-zes">ZES</span></div>
+        <div class="wordmark-sol">Solutions</div>
       </div>
     </div>
     <div class="divider"></div>
@@ -33,5 +33,18 @@
     <div>nxzes.com</div>
   </div>
   <script type="module" src="main.js"></script>
+  <script>
+    function syncChevronHeight() {
+      const wm = document.getElementById('wordmark');
+      const svg = document.getElementById('chevron-logo');
+      const h = wm.getBoundingClientRect().height;
+      svg.style.height = h + 'px';
+      svg.style.width = 'auto';
+    }
+    document.fonts.ready.then(() => {
+      syncChevronHeight();
+      window.addEventListener('resize', syncChevronHeight);
+    });
+  </script>
 </body>
 </html>
